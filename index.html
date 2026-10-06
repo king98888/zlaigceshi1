@@ -87,9 +87,8 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(255, 255, 255, 0.94);
+      background: #fff;
       border-bottom: 1px solid var(--line);
-      backdrop-filter: saturate(1.2) blur(12px);
     }
 
     .header-inner {
@@ -321,7 +320,7 @@
       font-size: 13px;
     }
 
-    .section { padding: 88px 0; }
+    .section { padding: 88px 0; scroll-margin-top: 84px; }
     .section-alt { background: var(--soft); }
 
     .section-head { max-width: 40em; margin-bottom: 40px; }
@@ -468,7 +467,7 @@
 
     .tech-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
 
@@ -522,7 +521,11 @@
       font-size: 13px;
     }
 
-    .quote { padding: 28px 24px; }
+    .quote {
+      display: flex;
+      flex-direction: column;
+      padding: 28px 24px;
+    }
 
     .mark {
       color: var(--accent);
@@ -531,7 +534,7 @@
       font-weight: 700;
     }
 
-    .quote blockquote { margin-top: 8px; }
+    .quote blockquote { margin-top: 8px; flex: 1; }
 
     .quote figcaption {
       margin-top: 18px;
@@ -662,16 +665,12 @@
       .footer-grid { grid-template-columns: 1.4fr 0.8fr 1fr; }
     }
 
+    @media (min-width: 700px) {
+      .tech-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
     @media (min-width: 1000px) {
-      .process-track::before {
-        content: "";
-        position: absolute;
-        top: 19px;
-        left: 20px;
-        right: 20px;
-        height: 2px;
-        background: #d5deea;
-      }
+      .tech-grid { grid-template-columns: repeat(6, 1fr); }
 
       .timeline {
         grid-template-columns: repeat(6, 1fr);
@@ -683,7 +682,16 @@
         padding-bottom: 0;
       }
 
-      .timeline li::after { content: none; }
+      .timeline li::after {
+        content: "";
+        left: 40px;
+        top: 19px;
+        bottom: auto;
+        width: calc(100% - 40px + 18px);
+        height: 2px;
+      }
+
+      .timeline li:last-child::after { content: none; }
       .step { margin-bottom: 16px; }
     }
 
